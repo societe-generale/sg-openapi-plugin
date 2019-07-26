@@ -1,0 +1,16 @@
+{
+  "title": "Base path MUST start with the API version",
+  "type": "BUG",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "interoperability",
+    "must"
+  ],
+  "defaultSeverity": "Critical",
+  "ruleSpecification": "",
+  "sqKey": "ApiVersion"
+}

@@ -1,0 +1,6 @@
+openapi: "3.0.1"   # Noncompliant {{The API MUST define a base path that starts with the API's major version.}}
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets: {}

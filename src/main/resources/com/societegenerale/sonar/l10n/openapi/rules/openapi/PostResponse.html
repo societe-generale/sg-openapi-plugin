@@ -1,0 +1,54 @@
+<p>The SG API Guidelines defines two standard workflows for POST operations:
+<ul>
+    <li>resource as state machine: the resource <tt>status</tt> reflects the progression of the provisioning. In this
+    case, a 201 code is returned with a <tt>Location</tt> header to give the resource's URL;</li>
+    <li>asynchronous operation: the operation returns a <tt>202</tt> and the <tt>Location</tt> header points to an
+    operation status resource (not specified at this point). The final resource's URL is provided by a
+    <tt>Content-Location</tt> header.</li>
+</ul>
+
+Using a consistent strategy to describe the update of collections supports a consistent end user experience using the
+SG APIs, and favors the reuse of code across service implementations.
+
+<h2>Noncompliant Code Example (OpenAPI v2)</h2>
+<pre>
+/my-pets:
+  post:
+    responses:
+      '201': # Noncompliant: Location is missing for 201
+        description: create pets
+/my-other-pets:
+  post:
+    responses:
+      '202': # Noncompliant: Content-Location is missing for 202
+        description: create pets
+        headers:
+          Location:
+            description: The URL where the operation can be followed
+            type: string
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+/my-pets:
+  post:
+    responses:
+      '201':
+        description: create pets
+        headers:
+          Location:
+            description: The URL where the operation can be followed
+            type: string
+/my-other-pets:
+  post:
+    responses:
+      '202':
+        description: create pets
+        headers:
+          Location:
+            description: The URL where the operation can be followed
+            type: string
+          Content-Location:
+            description: The actual resource's final URL
+            type: integer
+</pre>
+

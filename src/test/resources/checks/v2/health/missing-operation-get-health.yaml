@@ -1,0 +1,12 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+basePath: /test
+paths:
+  /petS: {}
+  /pets: {}
+  /health: # Noncompliant {{The API must have a GET operation on /health path}}
+    post:
+      responses: {}
+

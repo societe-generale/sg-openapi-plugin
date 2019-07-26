@@ -1,0 +1,30 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets/{petId}:
+    delete:
+      responses:     # Noncompliant: DELETE operations MUST return 204 No Content for successful response.
+        '200':
+          description: create pet
+          content:
+            'application/json': {}
+  /toys/{toyId}:
+    delete:
+      responses:     # Noncompliant: DELETE operations MUST return only 204 No Content for successful response.
+        '200':
+          description: delete toy
+        '204':
+          description: delete toy
+  /other-toys/{toyId}:
+    delete:
+      responses:
+        '204':
+          description: delete toy
+        '404':     # Noncompliant: DELETE operations MUST NOT return 404 Missing.
+          description: unknown toy
+          content:
+            'application/json':
+              schema:
+                type: object

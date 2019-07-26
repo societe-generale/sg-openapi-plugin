@@ -1,0 +1,93 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /some-path:
+    post:
+      parameters:
+        - name: not-a-date
+          in: header
+          schema:
+            type: integer  # Noncompliant {{Dates must use string/date-time or string/date format.}}
+#                 ^^^^^^^
+      responses:
+        '200':
+          description: Success response
+          headers:
+            X-Expiration-Date:
+              schema:
+                type: integer  # Noncompliant {{Dates must use string/date-time or string/date format.}}
+#                     ^^^^^^^
+            X-Creation-Date:
+              schema:
+                type: string
+                format: float  # Noncompliant {{Dates must use string/date-time or string/date format.}}
+#                       ^^^^^
+            X-Another-Date:
+              schema:
+                type: string
+                format: date-time # Noncompliant {{Define an ISO8601-compliant UTC date example.}}
+#                       ^^^^^^^^^
+components:
+  schemas:
+    JustAString:
+      type: string   # should not raise an error
+    SomeSchema:
+      type: object
+      properties:
+        someDate:
+          type: string
+          format: date-time
+          example: 2014-25-12T12:04:13.134Z
+        other_date:
+          type: string
+          format: date-time
+          example: 2014-25-12T12:04:13.134Z
+        incorrect-Date:
+          type: integer # Noncompliant [[secondary=+0]]{{Dates must use string/date-time or string/date format.}}
+#               ^^^^^^^
+        missing-example:
+          type: string
+          format: date-time # Noncompliant {{Define an ISO8601-compliant UTC date example.}}
+#                 ^^^^^^^^^
+        bad-example:
+          type: string
+          format: date-time
+          example: 2014-25-12T12:04:13.134+02:00   # Noncompliant {{Define an ISO8601-compliant UTC date example.}}
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      additionalProperties:
+        type: string
+        format: date-time # Noncompliant {{Define an ISO8601-compliant UTC date example.}}
+#               ^^^^^^^^^
+  parameters:
+    goodOne:
+      name: some-date
+      in: query
+      schema:
+        type: string
+        format: date-time
+      examples:
+        anExampleValue:
+          summary: Example of a correct date
+          value: 2014-25-12T12:04:13.134Z
+    bad-single-parameter:
+      name: other-date
+      in: header
+      content:
+        application/json:
+          schema:
+            type: string
+            format: date-time # Noncompliant {{Define an ISO8601-compliant UTC date example.}}
+#                   ^^^^^^^^^
+  requestBodies:
+    goodTwo:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              OtherFunc-kyDate:
+                type: string
+                format: date-time
+                example: 2014-25-12T12:04:13.134Z

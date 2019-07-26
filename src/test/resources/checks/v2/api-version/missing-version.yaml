@@ -1,0 +1,10 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+basePath: /toto # Noncompliant {{The API base path MUST start with the API's major version.}}
+#         ^^^^^
+paths:
+  /pets: {}
+  /v1/pets: {} # Noncompliant {{Resource paths MUST NOT contain the API version. Use the basePath field instead.}}
+# ^^^^^^^^

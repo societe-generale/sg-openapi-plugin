@@ -1,0 +1,21 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+servers:
+- url: https://my.company.com:8001/toto    # Noncompliant {{The API base path MUST start with the API's major version.}}
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+paths:
+  /pets:
+    servers:
+    - url: https://my.company.com:8001/titi # Noncompliant {{The API base path MUST start with the API's major version.}}
+#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    get:
+      responses:
+        '200':
+          description: some operation
+      servers:
+      - url: https://my.company.com:8001/tutu  # Noncompliant {{The API base path MUST start with the API's major version.}}
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  /v1/pets: {} # Noncompliant {{Resource paths MUST NOT contain the API version. Use the basePath field instead.}}
+# ^^^^^^^^

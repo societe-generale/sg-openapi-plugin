@@ -1,0 +1,17 @@
+{
+  "title": "Parameters and JSON fields SHOULD use only camelCase",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "style",
+    "readability",
+    "should"
+  ],
+  "defaultSeverity": "Major",
+  "ruleSpecification": "",
+  "sqKey": "CamelCaseParameters"
+}

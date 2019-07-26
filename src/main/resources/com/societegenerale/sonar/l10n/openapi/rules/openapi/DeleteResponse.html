@@ -1,0 +1,40 @@
+<p>The semantic of the DELETE operation is to remove an element from a collection. As the guiding principle of the
+standard is for the server to answer with the description of the resource, there's nothing to return after a successful
+  DELETE, so the operation must return 204.</p>
+
+<p>To preserve idempotency, the server SHOULD also return 204 when the requested resource has already been deleted and
+does not exist anymore. So, it SHOULD NOT return a 404 status code.</p>
+
+<h2>Noncompliant Code Example (OpenAPI v2)</h2>
+<pre>
+/pets/{petId}:
+  delete:
+    responses:     # Noncompliant: DELETE operations MUST return 204 No Content for successful response.
+      '200':
+        description: create pet
+/toys/{toyId}:
+  delete:
+    responses:     # Noncompliant: DELETE operations MUST return only 204 No Content for successful response.
+      '200':
+        description: delete toy
+      '204':
+        description: delete toy
+/other-toys/{toyId}:
+  delete:
+    responses:
+      '204':
+        description: delete toy
+      '404':       # Noncompliant: DELETE operations MUST NOT return 404 Missing.
+        description: unknown toy
+        schema:
+          type: object
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+/pets/{petId}:
+  delete:
+    responses:
+      '204':
+        description: delete pet
+</pre>
+

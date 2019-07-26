@@ -1,0 +1,11 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets: {}
+  /health:
+    get: # Noncompliant {{The operation GET /health must have a 200 OK response code}}
+      responses:
+        204:
+          description: No content

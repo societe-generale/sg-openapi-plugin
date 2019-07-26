@@ -1,0 +1,73 @@
+<p>APIs must define OAuth2.0 permissions to protect their resources. At least one permission must be assigned to each endpoint.</p>
+
+<p>APIs should stick to component specific permissions without resource extension to avoid governance complexity of too
+many fine grained permissions. For the majority of use cases, restricting access to specific API endpoints using read and write
+is sufficient for controlling access. However, in some situations, where the API serves different types of resources for different owners,
+resource specific scopes may make sense.
+</p>
+
+<p>Define your permissions using OAuth2.0 flows, referencing your authoritative authorization server in the contract.</p>
+
+<h2>Noncompliant Code Example (OpenAPI 3)</h2>
+<pre>
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://iamaas.int.world.socgen/v2/oauth2/token
+          scopes:
+            'myservice:read': A defined scope
+paths:
+  /pets:
+    get:          # Noncompliant: Endpoint is not secured by OAuth2 scope(s).
+      responses:
+        '200':
+          description: some operation
+    patch:        # Noncompliant: Endpoint is secured by undefined OAuth2 scope(s).
+      responses:
+        '200':
+          description: some operation
+      security:
+      - oauth2:
+        - undefined-scope
+</pre>
+<h2>Compliant Solution (OpenAPI 3)</h2>
+<pre>
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://iamaas.int.world.socgen/v2/oauth2/token
+          scopes:
+            'myservice:read': A defined scope
+            'myservice:write': A defined scope
+paths:
+  /pets:
+    get:          # Noncompliant: Endpoint is not secured by OAuth2 scope(s).
+      responses:
+        '200':
+          description: some operation
+      security:
+      - oauth2:
+        - 'myservice:read'
+    patch:
+      responses:
+        '200':
+          description: some operation
+      security:
+      - oauth2:
+        - 'myservice:write'
+</pre>
+

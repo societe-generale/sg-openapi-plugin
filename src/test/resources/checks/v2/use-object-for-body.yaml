@@ -1,0 +1,41 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      parameters:
+      - name: theBody
+        in: body
+        schema:
+          type: string    # Noncompliant {{Use only objects for body parameters and operation return types.}}
+      responses:
+        '200':
+          description: some operation
+          schema:
+            type: array   # Noncompliant {{Use only objects for body parameters and operation return types.}}
+        '400':
+          description: error result
+          schema:
+            $ref: "#/definitions/ReturnValue"
+        '500':
+          description: internal error
+          schema:
+            type: object
+definitions:
+  ReturnValue:
+    type: array  # Noncompliant {{Use only objects for body parameters and operation return types.}}
+  SomeRootSchema:
+    type: object
+    properties:
+      anArrayProperty:
+        type: array
+        items:
+          type: string
+parameters:
+  BodyParameter:
+    in: body
+    name: theBody
+    schema:
+      type: object

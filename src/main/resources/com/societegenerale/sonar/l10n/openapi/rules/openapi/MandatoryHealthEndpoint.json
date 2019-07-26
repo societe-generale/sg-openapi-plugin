@@ -1,0 +1,16 @@
+{
+  "title": "/health endpoint MUST exist",
+  "type": "BUG",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "8h"
+  },
+  "tags": [
+    "interoperability",
+    "must"
+  ],
+  "defaultSeverity": "Critical",
+  "ruleSpecification": "",
+  "sqKey": "MandatoryHealthEndpoint"
+}

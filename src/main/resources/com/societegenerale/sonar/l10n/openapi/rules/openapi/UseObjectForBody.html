@@ -1,0 +1,57 @@
+<p>Avoid using plain scalars or arrays in your body objects (request or response). These data types are not ready for
+  extension, and will create breaking changes for the API client if a new field needs to be added.
+</p>
+<p>Furthermore, complex <a href="http://jeremiahgrossman.blogspot.com/2006/01/advanced-web-attack-techniques-using.html">attacks on top level JSON content</a>
+are made possible if you return raw arrays. Instead, wrap the array in an object, using a single key named after the
+  resource being accessed.</p>
+
+<h2>Noncompliant Code Example</h2>
+<pre>
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      responses:
+        '200':
+          description: some operation
+        content:
+          'application/json':
+            schema:
+              type: array  # Noncompliant: Use only objects for body parameters and operation return types.
+</pre>
+<h2>Compliant Solution (OpenAPI 3)</h2>
+<pre>
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      responses:
+        '200':
+          description: some operation
+        content:
+          'application/json':
+            schema:
+              type: object
+</pre>
+<p>with the object being of the form:</p>
+<pre>
+{
+  "pets": [
+    {
+      "name": "Jumpy",
+      "type": "Dog"
+    },
+    {
+      "name": "Furry",
+      "type": "Cat"
+    }
+  ]
+}
+</pre>
+

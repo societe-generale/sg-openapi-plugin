@@ -1,0 +1,56 @@
+<p>Date standardization is critical to the good interoperability of systems. Adopting a common, consistent way of
+formatting dates greatly helps reduce errors in dates conversions. The ISO8601 standard has been designed for this
+purpose.</p>
+
+<p>All fields that denote dates must be serialized with the ISO8601 date and time representation, expressed in UTC time.
+OpenAPI contracts must use the <tt>string</tt> type with the <tt>date-time</tt> format. An example ISO8601 date must be
+provided to hint that dates will use this format.</p>
+
+<h2>Noncompliant Code Example</h2>
+<pre>
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      responses:
+        '200':
+          description: some operation
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                birthDate:
+                  type: string   # Noncompliant: no format and no example provided
+                buyDate:
+                  type: integer  # Noncompliant: not using ISO8601 format at all
+</pre>
+<h2>Compliant Solution (OpenAPI 3)</h2>
+<pre>
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      responses:
+        '200':
+          description: some operation
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                birthDate:
+                  type: string
+                  format: date-time
+                  example: 2019-03-19T08:20:13.415Z
+                buyDate:
+                  type: string
+                  format: date-time
+                  example: 2019-04-19T08:20:13.415Z
+</pre>

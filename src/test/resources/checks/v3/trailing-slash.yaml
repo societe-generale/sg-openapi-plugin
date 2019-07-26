@@ -1,0 +1,8 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets/: {}            # Noncompliant {{Don't use terminal '/' for paths.}}
+  /pets/something: {}
+  /pets/something/: {}  # Noncompliant {{Don't use terminal '/' for paths.}}

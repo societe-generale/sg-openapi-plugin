@@ -1,0 +1,18 @@
+{
+  "title": "Array properties SHOULD use plural nouns",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "1h"
+  },
+  "tags": [
+    "style",
+    "readability",
+    "modelling",
+    "should"
+  ],
+  "defaultSeverity": "Major",
+  "ruleSpecification": "",
+  "sqKey": "UsePluralForArrayProperties"
+}

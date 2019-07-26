@@ -1,0 +1,25 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+servers:
+  - url: https://my.company.com:8001/v2/toto    # Noncompliant [[secondary=3]]{{API version and API base path differ.}}
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+paths:
+  /pets:
+    servers:
+    - url: https://my.company.com:8001/v2/titi  # Noncompliant [[secondary=3]]{{API version and API base path differ.}}
+#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    get:
+      responses:
+        '200':
+          description: some operation
+      servers:
+      - url: https://my.company.com:8001/v2/tutu  # Noncompliant [[secondary=3]]{{API version and API base path differ.}}
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    post:
+      responses:
+        '200':
+          description: some operation
+      servers:
+      - url: https://my.company.com:8001/v1

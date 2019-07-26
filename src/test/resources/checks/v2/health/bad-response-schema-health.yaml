@@ -1,0 +1,94 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+basePath: /test
+paths:
+  /petS: {}
+  /pets: {}
+  /health:
+    get:
+      tags:
+      - Technical
+      summary: Gets the health status of the Endpoint
+      operationId: Health
+      produces:
+        - application/json
+      responses:
+        200:
+          description : OK
+          schema:
+            $ref: "#/definitions/health_status"
+
+definitions:
+  health_status: # Noncompliant {{The operation GET /health schema must contain string attribute: version}}
+    type: object
+    required:
+      - comment
+      - status
+    properties:
+      # Noncompliant@+1 {{The status argument on the response of operation GET /health must be either UP|DOWN|DEGRADED}}
+      status:
+        type: string
+        description: Status of the service
+        example: UP
+        enum:
+          - UP
+          - DEGRADED
+      comment:
+        type: string
+        description: human readable status
+        default: ""
+      az:
+        type: array
+        items:
+          $ref: "#/definitions/az_status"
+      modules:
+        type: array
+        items:
+          $ref: "#/definitions/tag_status"
+  az_status:  # Noncompliant {{The operation GET /health schema must contain string attribute: name}}
+    type: object
+    required:
+      - comment
+      - status
+    properties:
+      status:
+        type: string
+        description: Status of the service
+        example: UP
+        enum:
+          - UP
+          - DEGRADED
+          - DOWN
+      comment:
+        type: string
+        description: human readable status
+        default: ""
+  tag_status:
+    type: object
+    required:
+      - comment
+      - status
+      - name
+    properties:
+      name:
+        type: string
+        description: Module name
+        example: Cluster
+      status:
+        type: string
+        description: Status of the service
+        example: UP
+        enum:
+          - UP
+          - DEGRADED
+          - DOWN
+      comment:
+        type: string
+        description: human readable status
+        default: ""
+      az:
+        type: array
+        items:
+          $ref: "#/definitions/az_status"

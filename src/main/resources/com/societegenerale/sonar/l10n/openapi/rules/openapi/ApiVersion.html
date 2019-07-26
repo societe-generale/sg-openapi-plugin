@@ -1,0 +1,25 @@
+<p>The base path of the API should contain the API major version. This version must be compliant with
+the API version declared in the "info" field.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+OpenAPI 2.0:
+basePath: /api/xyz
+
+OpenAPI 3.0.1:
+servers:
+    -url: http://my.company.com:8001/{basePath}
+     variables:
+       basePath: api/xyz
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+OpenAPI 2.0:
+basePath: /v1/xyz
+
+OpenAPI 3.0.1:
+servers:
+    -url: http://my.company.com:8001/{basePath}
+     variables:
+       basePath: v1/xyz
+</pre>
+

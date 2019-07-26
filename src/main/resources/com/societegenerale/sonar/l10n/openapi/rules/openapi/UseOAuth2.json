@@ -1,0 +1,17 @@
+{
+  "title": "APIs MUST be protected with OAuth 2.",
+  "type": "VULNERABILITY",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "2h"
+  },
+  "tags": [
+    "interoperability",
+    "security",
+    "must"
+  ],
+  "defaultSeverity": "Blocker",
+  "ruleSpecification": "",
+  "sqKey": "UseOAuth2"
+}

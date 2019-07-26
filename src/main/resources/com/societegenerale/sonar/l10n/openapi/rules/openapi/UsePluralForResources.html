@@ -1,0 +1,31 @@
+<p>REST modelling is based on the notion of resources. Usually, a collection of resource instances is provided. The
+resource collection must use plural english nouns. This encourages thinking about the API in terms of collections
+of documents, rather than in terms of attributes.</p>
+
+<h2>Noncompliant Code Example (OpenAPI 3)</h2>
+<pre>
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /some-pet:           # Noncompliant: Use plural for resource names.
+    get:
+      responses:
+        '200':
+          description: some operation
+</pre>
+<h2>Compliant Solution (OpenAPI 3)</h2>
+<pre>
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /some-pets:
+    get:
+      responses:
+        '200':
+          description: some operation
+</pre>
+

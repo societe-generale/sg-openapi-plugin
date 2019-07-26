@@ -1,0 +1,64 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      responses:
+        '200':
+          description: some operation
+    post:
+      responses: # Noncompliant {{POST operations MUST return 201 Created or 202 Accepted for successful response.}}
+        '200':
+          description: some operation
+  /incorrect-pets:
+    post:
+      responses: # Noncompliant {{POST operations MUST return 201 Created or 202 Accepted for successful response.}}
+        '400':
+          description: a strange response
+  /still-incorrect:
+    post:
+      responses: # Noncompliant {{POST operations MUST return only one of 201 Created and 202 Accepted for successful response.}}
+        '201':
+          $ref: '#/responses/201PostResponse'
+        '202':
+          $ref: '#/responses/202PostResponse'
+  /mypets:
+    post:
+      responses:
+        '201': # Noncompliant {{201 Created MUST return a Location string header.}}
+          description: create pets
+  /my-pets-byref:
+    post:
+      responses:
+        '202': # Noncompliant {{202 Accepted MUST return Location and Content-Location string headers.}}
+          $ref: '#/responses/201PostResponse'
+  /my-other-pets:
+    post:
+      responses:
+        '202': # Noncompliant {{202 Accepted MUST return Location and Content-Location string headers.}}
+          description: create pets
+          headers:
+            Location:
+              description: The address where the operation can be followed
+              type: string
+            Content-Location:
+              description: The address where the operation can be followed
+              type: integer
+responses:
+  202PostResponse:
+    description: A valid POST 202 response
+    headers:
+      Location:
+        description: The address where the operation can be followed
+        type: string
+      Content-Location:
+        description: The address where the final resource will be available
+        type: string
+  201PostResponse:
+    description: A valid POST 201 response
+    headers:
+      Location:
+        description: The address where the resource can be accessed
+        type: string

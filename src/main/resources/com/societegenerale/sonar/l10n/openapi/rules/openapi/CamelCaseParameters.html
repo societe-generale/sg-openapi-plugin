@@ -1,0 +1,18 @@
+<p>Use only camel-case for query parameters and fields of input/output JSON structures. This increases the readability
+of the payloads in your API's input and output values. Consistent usage of the same style also improves the general
+accessibility of your API by making its usage more intuitive.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+{
+    "some-field": "some value",
+    "other_field": 1
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+{
+    "someField": "some value",
+    "otherField": 1
+}
+</pre>
+

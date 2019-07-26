@@ -1,0 +1,207 @@
+<p>We expect every service to expose a publicly available endpoint that provides a summary view of the functional health of the service.
+</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+OpenAPI 2.0 or OpenAPI 3.0.1 :
+paths:
+    /xyz/{} : { ...}
+
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+OpenAPI 2.0
+paths:
+    /xyz/{} : { ...}
+    /health :
+      get:
+        produces:
+          - application/json
+        responses:
+          200:
+            description : OK
+            schema:
+                type: object
+                required:
+                  - comment
+                  - status
+                  - version
+                properties:
+                  version:
+                    type: string
+                    description: health version
+                    default: 1.0
+                    example: 1.0
+                  status:
+                    type: string
+                    description: Status of the service
+                    example: UP
+                    enum:
+                      - UP
+                      - DEGRADED
+                      - DOWN
+                  comment:
+                    type: string
+                    description: human readable status
+                    default: ""
+                  az:
+                    type: array
+                    items:
+                      $ref : "#/definitions/az_status"
+                  modules:
+                    type: array
+                    items:
+                      $ref : "#/definitions/tag_status"
+
+definitions:
+  az_status:
+    type: object
+    required:
+      - comment
+      - status
+      - name
+    properties:
+      name:
+        type: string
+        description: AZ Name
+        example: fr-paris-1
+      status:
+        type: string
+        description: Status of the service
+        example: UP
+        enum:
+          - UP
+          - DEGRADED
+          - DOWN
+      comment:
+        type: string
+        description: human readable status
+        default: ""
+  tag_status:
+    type: object
+    required:
+      - comment
+      - status
+      - name
+    properties:
+      name:
+        type: string
+        description: Module name
+        example: Cluster
+      status:
+        type: string
+        description: Status of the service
+        example: UP
+        enum:
+          - UP
+          - DEGRADED
+          - DOWN
+      comment:
+        type: string
+        description: human readable status
+        default: ""
+      az:
+        type: array
+        items:
+          $ref: "#/definitions/az_status"
+
+</pre>
+
+
+<pre>
+OpenAPI 3.0
+paths:
+    /xyz/{} : { ...}
+    /health :
+      get:
+        responses:
+          200:
+            description : OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  required:
+                    - comment
+                    - status
+                    - version
+                  properties:
+                    version:
+                      type: string
+                      description: health version
+                      default: 1.0
+                      example: 1.0
+                    status:
+                      type: string
+                      description: Status of the service
+                      example: UP
+                      enum:
+                        - UP
+                        - DEGRADED
+                        - DOWN
+                    comment:
+                      type: string
+                      description: human readable status
+                      default: ""
+                    az:
+                      type: array
+                      items:
+                        $ref : "#/components/schemas/az_status"
+                    modules:
+                      type: array
+                      items:
+                        $ref : "#/components/schemas/tag_status"
+
+components:
+  schemas:
+    az_status:
+      type: object
+      required:
+        - comment
+        - status
+        - name
+      properties:
+        name:
+          type: string
+          description: AZ Name
+          example: fr-paris-1
+        status:
+          type: string
+          description: Status of the service
+          example: UP
+          enum:
+            - UP
+            - DEGRADED
+            - DOWN
+        comment:
+          type: string
+          description: human readable status
+          default: ""
+    tag_status:
+      type: object
+      required:
+        - comment
+        - status
+        - name
+      properties:
+        name:
+          type: string
+          description: Tag name
+          example: Cluster
+        status:
+          type: string
+          description: Status of the service
+          example: UP
+          enum:
+            - UP
+            - DEGRADED
+            - DOWN
+        comment:
+          type: string
+          description: human readable status
+          default: ""
+        az:
+          type: array
+          items:
+            $ref: "#/components/schemas/az_status"
+
+</pre>

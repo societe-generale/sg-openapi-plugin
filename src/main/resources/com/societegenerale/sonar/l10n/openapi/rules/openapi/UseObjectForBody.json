@@ -1,0 +1,18 @@
+{
+  "title": "Use only objects for body parameters and operation return types.",
+  "type": "VULNERABILITY",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "1h"
+  },
+  "tags": [
+    "style",
+    "modelling",
+    "security",
+    "must"
+  ],
+  "defaultSeverity": "Major",
+  "ruleSpecification": "",
+  "sqKey": "UseObjectForBody"
+}

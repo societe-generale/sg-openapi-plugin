@@ -1,0 +1,56 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      responses:
+        '200':
+          description: some operation
+      parameters:
+      - name: bad-name # Noncompliant {{Use CamelCase names for query parameters and json properties.}}
+        in: query
+      - name: ignored-bad-name
+        in: header
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                wrong-name: # Noncompliant {{Use CamelCase names for query parameters and json properties.}}
+                  type: integer
+                correctName:
+                  type: integer
+    post: # without produces/consumes -> should not fail
+      responses:
+        '200':
+          description: some operation
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        wrong-name: # Noncompliant {{Use CamelCase names for query parameters and json properties.}}
+          type: integer
+        correctName:
+          type: string
+    Category2:
+      type: array
+  parameters:
+    good-param:
+      name: skip
+      in: query
+    badParam:
+      name: invalid-name # Noncompliant {{Use CamelCase names for query parameters and json properties.}}
+      in: query
+    badIngored3:
+      name: invalid-name
+      in: cookie
+    badIgnored:
+      name: invalid-name
+      in: header
+    badIgnored2:
+      name: invalid-name
+      in: path

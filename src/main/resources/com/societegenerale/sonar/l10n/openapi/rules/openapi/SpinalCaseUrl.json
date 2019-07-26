@@ -1,0 +1,17 @@
+{
+  "title": "URLs segments SHOULD use spinal-case.",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "20min"
+  },
+  "tags": [
+    "style",
+    "readability",
+    "should"
+  ],
+  "defaultSeverity": "Major",
+  "ruleSpecification": "RFC3986",
+  "sqKey": "SpinalCaseUrl"
+}

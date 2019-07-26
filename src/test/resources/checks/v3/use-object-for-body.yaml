@@ -1,0 +1,50 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string    # Noncompliant {{Use only objects for body parameters and operation return types.}}
+          text/xml:
+            schema:
+              type: string    # Noncompliant {{Use only objects for body parameters and operation return types.}}
+      responses:
+        '200':
+          description: some operation
+          content:
+            'application/json':
+              schema:
+                type: array   # Noncompliant {{Use only objects for body parameters and operation return types.}}
+        '400':
+          description: error result
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/ReturnValue"
+        '401':
+          description: error result
+          content:
+            'application/json':
+              schema:
+                $ref: "#/invalid/reference"
+        '500':
+          description: internal error
+          content:
+            'application/json':
+              schema:
+                type: object
+components:
+  schemas:
+    ReturnValue:
+      type: array   # Noncompliant {{Use only objects for body parameters and operation return types.}}
+  requestBodies:
+    BodyParameter:
+      content:
+        application/json:
+          schema:
+            type: array    # Noncompliant {{Use only objects for body parameters and operation return types.}}

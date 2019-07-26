@@ -1,0 +1,100 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+basePath: /test
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  /health:
+    get:  # No error since the default response type is defined at top level
+      summary: Gets the health status of the Endpoint
+      operationId: Health
+      responses:
+        200:
+          description : OK
+          schema:
+            type: object
+            required:
+            - comment
+            - status
+            - version
+            properties:
+              version:
+                type: string
+                description: health version
+                default: 1.0
+                example: 1.0
+              status:
+                type: string
+                description: Status of the service
+                example: UP
+                enum:
+                - UP
+                - DEGRADED
+                - DOWN
+              comment:
+                type: string
+                description: human readable status
+                default: ""
+              az:
+                type: array
+                items:
+                  $ref : "#/definitions/az_status"
+              modules:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - comment
+                  - status
+                  - name
+                  properties:
+                    name:
+                      type: string
+                      description: Module name
+                      example: Cluster
+                    status:
+                      type: string
+                      description: Status of the service
+                      example: UP
+                      enum:
+                      - UP
+                      - DEGRADED
+                      - DOWN
+                    comment:
+                      type: string
+                      description: human readable status
+                      default: ""
+                    az:
+                      type: array
+                      items:
+                        $ref: "#/definitions/az_status"
+
+
+definitions:
+  az_status:
+    type: object
+    required:
+    - comment
+    - status
+    - name
+    properties:
+      name:
+        type: string
+        description: AZ Name
+        example: fr-paris-1
+      status:
+        type: string
+        description: Status of the service
+        example: UP
+        enum:
+        - UP
+        - DEGRADED
+        - DOWN
+      comment:
+        type: string
+        description: human readable status
+        default: ""

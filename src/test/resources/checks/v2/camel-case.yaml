@@ -1,0 +1,53 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      responses:
+        '200':
+          description: some operation
+      parameters:
+        - name: bad-name  # Noncompliant {{Use CamelCase names for query parameters and json properties.}}
+          in: query
+          type: string
+    post: # without produces/consumes -> should not fail
+      responses:
+        '200':
+          description: some operation
+definitions:
+  Category:
+    type: object
+    properties:
+      wrong-name: # Noncompliant {{Use CamelCase names for query parameters and json properties.}}
+        type: integer
+      correctName:
+        type: string
+  Category2:
+    type: array
+parameters:
+  good-param:
+    name: skip
+    in: query
+    type: string
+  badParam:
+    name: invalid-name # Noncompliant {{Use CamelCase names for query parameters and json properties.}}
+    in: query
+    type: string
+  badParam2:
+    name: invalid-name # Noncompliant {{Use CamelCase names for query parameters and json properties.}}
+    in: formData
+    type: string
+  badParam3:
+    name: invalid-name # Noncompliant {{Use CamelCase names for query parameters and json properties.}}
+    in: body
+    schema: {}
+  badIgnored:
+    name: invalid-name
+    in: header
+    type: string
+  badIgnored2:
+    name: invalid-name
+    in: path
+    type: string

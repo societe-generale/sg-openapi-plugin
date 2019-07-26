@@ -1,0 +1,34 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://example.com/api/oauth/dialog
+          scopes:
+            defined-scope: A defined scope
+security:
+- oauth2:
+  - defined-scope
+paths:
+  /pets:
+    get:          # Noncompliant {{Endpoint is not secured by OAuth2 scope(s).}}
+      responses:
+        '200':
+          description: some operation
+      security: []
+    post:
+      responses:
+        '201':
+          description: some operation
+    patch:        # Noncompliant {{Endpoint is secured by undefined OAuth2 scope(s).}}
+      responses:
+        '200':
+          description: some operation
+      security:
+      - oauth2:
+        - undefined-scope

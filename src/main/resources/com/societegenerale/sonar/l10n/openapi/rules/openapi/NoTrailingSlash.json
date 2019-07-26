@@ -1,0 +1,17 @@
+{
+  "title": "URL MUST not have a trailing slash",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "style",
+    "readability",
+    "must"
+  ],
+  "defaultSeverity": "Major",
+  "ruleSpecification": "RFC3986",
+  "sqKey": "NoTrailingSlash"
+}

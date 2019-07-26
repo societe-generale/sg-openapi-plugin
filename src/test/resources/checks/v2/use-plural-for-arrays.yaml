@@ -1,0 +1,48 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      parameters:
+        - name: property # Noncompliant {{Use plural nouns for array properties.}}
+#               ^^^^^^^^
+          in: query
+          type: array
+      responses:
+        '200':
+          description: some operation
+          schema:
+            type: object
+            properties:
+              shouldBePlural:  #Noncompliant {{Use plural nouns for array properties.}}
+#             ^^^^^^^^^^^^^^
+                type: array
+                items:
+                  type: string
+              nicknames:
+                type: array
+                items:
+                  type: string
+              model:  #Noncompliant {{Use plural nouns for array properties.}}
+                $ref: "#/definitions/SomeArray"
+definitions:
+  SomeModel:
+    type: object
+    properties:
+      debugOutput:  #Noncompliant {{Use plural nouns for array properties.}}
+#     ^^^^^^^^^^^
+        type: array
+        items:
+          type: string
+      nicknames:
+        type: array
+        items:
+          type: string
+      name:
+        type: string
+  SomeArray:
+    type: array
+    items:
+      type: string

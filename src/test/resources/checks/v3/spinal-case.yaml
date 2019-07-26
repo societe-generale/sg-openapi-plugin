@@ -1,0 +1,11 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  # Noncompliant@+1 {{Use spinal case for this path.}}
+  /petS: {}
+# ^^^^^
+  /compliant-path: {}
+  /Non-compliant: {} #Noncompliant {{Use spinal case for this path.}}
+# ^^^^^^^^^^^^^^

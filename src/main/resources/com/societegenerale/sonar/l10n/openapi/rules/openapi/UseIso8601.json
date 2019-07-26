@@ -1,0 +1,18 @@
+{
+  "title": "Use ISO8601 with UTC for dates",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "1h"
+  },
+  "tags": [
+    "style",
+    "modelling",
+    "security",
+    "must"
+  ],
+  "defaultSeverity": "Major",
+  "ruleSpecification": "",
+  "sqKey": "UseIso8601"
+}

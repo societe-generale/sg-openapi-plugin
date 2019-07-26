@@ -1,0 +1,45 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      responses:
+        '200':
+          description: some operation
+  /pets/{petId}:
+    get:
+      responses:
+        '200':
+          description: some operation
+  /health:
+    get:
+      responses:
+        '200':
+          description: some operation
+  /some/other/pet-with-dashes:
+    get:
+      responses:
+        '200':
+          description: some operation
+  /some/other/pet-with-dash: # Noncompliant {{Use plural nouns for resource paths.}}
+    get:
+      responses:
+        '200':
+          description: some operation
+  /some/{resourceId}/sub-collection:   # Noncompliant {{Use plural nouns for resource paths.}}
+    get:
+      responses:
+        '200':
+          description: some operation
+  /some/{resourceId}/sub-collection/{attributeId}:
+    get:
+      responses:
+        '200':
+          description: some operation
+  /some/{resourceId}/and-attribute:   # Ignored: no sub-path with parameter, this is an attribute
+    get:
+      responses:
+        '200':
+          description: some operation

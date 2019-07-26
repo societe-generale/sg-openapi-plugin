@@ -1,0 +1,74 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /some-path:
+    post:
+      parameters:
+        - name: not-a-date
+          in: header
+          type: integer  # Noncompliant {{Dates must use string/date-time or string/date format.}}
+#               ^^^^^^^
+      responses:
+        '200':
+          description: Success response
+          headers:
+            X-Expiration-Date:
+              type: integer  # Noncompliant {{Dates must use string/date-time or string/date format.}}
+#                   ^^^^^^^
+            X-Creation-Date:
+              type: string
+              format: float  # Noncompliant {{Dates must use string/date-time or string/date format.}}
+#                     ^^^^^
+            X-Another-Date:
+              type: string
+              format: date-time
+definitions:
+  JustAString:
+    type: string    # should not raise an error
+  SomeSchema:
+    type: object
+    properties:
+      someDate:
+        type: string
+        format: date-time
+        example: 2014-25-12T12:04:13.134Z
+      other_date:
+        type: string
+        format: date
+        example: 2014-25-12
+      incorrect-Date:
+        type: integer # Noncompliant [[secondary=+0]]{{Dates must use string/date-time or string/date format.}}
+#             ^^^^^^^
+      missing-example:
+        type: string
+        format: date-time # Noncompliant {{Define an ISO8601-compliant UTC date example.}}
+#               ^^^^^^^^^
+      bad-example:
+        type: string
+        format: date-time
+        example: 2014-25-12T12:04:13.134+02:00   # Noncompliant {{Define an ISO8601-compliant UTC date example.}}
+#                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      additionalProperties:
+        type: string
+        format: date-time # Noncompliant {{Define an ISO8601-compliant UTC date example.}}
+#               ^^^^^^^^^
+parameters:
+  goodOne:
+    name: some-date
+    type: string
+    in: query
+    format: date-time
+  goodTwo:
+    name: OtherFunc-kyDate
+    type: string
+    in: formData
+    format: date-time
+  badOne:
+    name: missing-example
+    schema:
+      type: string
+      format: date-time # Noncompliant {{Define an ISO8601-compliant UTC date example.}}
+#             ^^^^^^^^^
+    in: body

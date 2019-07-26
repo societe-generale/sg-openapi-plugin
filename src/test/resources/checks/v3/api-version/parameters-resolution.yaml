@@ -1,0 +1,20 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+servers:
+- url: https://{username}.gigantic-server.com:{port}/{missingParameter}{basePath}     # Noncompliant [[secondary=3]]{{API version and API base path differ.}}
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  description: The production API server
+  variables:
+    username:
+      default: demo
+    port:
+      enum:
+      - '8443'
+      - '443'
+      default: '8443'
+    basePath:
+      default: v2/toto
+paths:
+  /pets: {}

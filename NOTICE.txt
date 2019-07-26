@@ -1,0 +1,6 @@
+Sonar OpenAPI
+Copyright 2018 Societe Generale
+mailto:vincent.girard-reydet AT socgen DOT com
+
+This product includes software developed at
+Societe Generale.

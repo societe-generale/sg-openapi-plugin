@@ -1,0 +1,33 @@
+<p>To favor the readability and the intrinsic understandability of your models, pluralize the name of array properties.</p>
+
+<h2>Noncompliant Code Example (OpenAPI 3)</h2>
+<pre>
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+components:
+  schemas:
+    Car:
+      properties:
+        feature:              # Noncompliant: Use plural for array properties.
+          type: array
+          items:
+            type: string
+</pre>
+<h2>Compliant Solution (OpenAPI 3)</h2>
+<pre>
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+components:
+  schemas:
+    Car:
+      properties:
+        features:
+          type: array
+          items:
+            type: string
+</pre>
+

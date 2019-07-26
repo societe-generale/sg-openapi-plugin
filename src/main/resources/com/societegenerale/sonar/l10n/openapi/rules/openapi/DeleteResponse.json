@@ -1,0 +1,17 @@
+{
+  "title": "DELETE operations response MUST conform to the standard.",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "1h"
+  },
+  "tags": [
+    "interoperability",
+    "bad-practice",
+    "must"
+  ],
+  "defaultSeverity": "Critical",
+  "ruleSpecification": "",
+  "sqKey": "DeleteResponse"
+}

@@ -1,0 +1,23 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+basePath: /test
+paths:
+  /petS: {}
+  /pets: {}
+  /health:
+    get:  # Noncompliant {{The operation GET /health must return an 'application/json' document}}
+      tags:
+      - Technical
+      summary: Gets the health status of the Endpoint
+      operationId: Health
+      responses:
+        200:
+          description : OK
+          # Noncompliant@+3 {{The operation GET /health schema must contain string attribute: version}}
+          # Noncompliant@+2 {{The operation GET /health schema must contain string attribute: status}}
+          # Noncompliant@+1 {{The operation GET /health schema must contain string attribute: comment}}
+          schema: {}
+
+
