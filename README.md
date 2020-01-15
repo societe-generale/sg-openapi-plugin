@@ -1,8 +1,13 @@
-Société Générale OpenAPI rules
+# Société Générale OpenAPI rules [![Build Status](https://travis-ci.org/societe-generale/sg-openapi-plugin.svg?branch=master)](https://travis-ci.org/societe-generale/sg-openapi-plugin) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=societe-generale_sg-openapi-plugin&metric=alert_status)](https://sonarcloud.io/dashboard?id=societe-generale_sg-openapi-plugin)
+SonarOpenApi is a code analyzer for OpenAPI specifications.
+
+**Build status (all branches)**
+
+[![Build Status](https://api.travis-ci.org/societe-generale/sg-openapi-plugin.svg)](https://travis-ci.org/societe-generale/sg-openapi-plugin)
 ==============================
 
 Société Générale OpenAPI is a set of verification rules to enforce the Société Générale API Guidelines.
-It is designed to complement the generic Sonar OpenAPI plugin.
+It is designed to complement the generic [Sonar OpenAPI plugin](https://github.com/societe-generale/sonar-openapi).
 
 License
 -------
