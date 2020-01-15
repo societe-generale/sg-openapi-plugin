@@ -11,7 +11,7 @@
   <groupId>com.societegenerale.sonar.openapi</groupId>
   <artifactId>sg-openapi-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <name>OpenAPI :: Societe Generale API Guidelines Checks</name>
   <description>Rules repository for Societe Generale guidelines on OpenAPI contracts</description>
@@ -19,7 +19,7 @@
   <properties>
     <assertj-core.version>3.6.1</assertj-core.version>
     <junit.version>4.12</junit.version>
-    <openapi.version>1.2.1-SNAPSHOT</openapi.version>
+    <openapi.version>1.2.2</openapi.version>
     <sonar.version>6.7</sonar.version>
     <sonar-analyzer.version>1.6.0.219</sonar-analyzer.version>
     <sonarQubeMinVersion>6.7</sonarQubeMinVersion>
@@ -75,7 +75,7 @@
         <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
         <configuration>
-          <pluginName>GtsOpenApi</pluginName>
+          <pluginName>SgOpenApi</pluginName>
           <pluginClass>com.societegenerale.sonar.openapi.SgOpenApiPlugin</pluginClass>
           <skipDependenciesPackaging>true</skipDependenciesPackaging>
           <sonarLintSupported>true</sonarLintSupported>
