@@ -16,6 +16,49 @@
 
     <name>OpenAPI :: Societe Generale API Guidelines Checks</name>
     <description>Rules repository for Societe Generale guidelines on OpenAPI contracts</description>
+    <inceptionYear>2019</inceptionYear>
+    <organization>
+        <name>Societe Generale</name>
+    </organization>
+    <licenses>
+        <license>
+            <name>GNU LGPL 3</name>
+            <url>http://www.gnu.org/licenses/lgpl.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>vgirardreydet</id>
+            <name>Vincent Girard-Reydet</name>
+            <email>vincent.girard-reydet@socgen.com</email>
+            <organization>Societe Generale</organization>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/societe-generale/sg-openapi-plugin</url>
+        <connection>scm:git:git@github.com:societe-generale/sg-openapi-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:societe-generale/sg-openapi-plugin.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <ciManagement>
+        <system>Travis</system>
+        <url>https://travis-ci.org/societe-generale/sg-openapi-plugin</url>
+    </ciManagement>
 
     <properties>
         <assertj-core.version>3.6.1</assertj-core.version>

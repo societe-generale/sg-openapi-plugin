@@ -1,6 +1,6 @@
 /*
  * OpenAPI :: Societe Generale API Guidelines Checks
- * Copyright (C) 2009-2019 SonarSource SA
+ * Copyright (C) 2019-2019 SonarSource SA
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
