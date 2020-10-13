@@ -61,7 +61,7 @@
 
     <properties>
         <assertj-core.version>3.6.1</assertj-core.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <openapi.version>1.2.2</openapi.version>
         <sonar.version>6.7</sonar.version>
         <sonar-analyzer.version>1.6.0.219</sonar-analyzer.version>
